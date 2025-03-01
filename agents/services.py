@@ -7,7 +7,7 @@ def main():
     agento = AgentPipeline()
     
     parser = argparse.ArgumentParser(description="Function calling AI Agents.")
-    parser.add_argument("--query", required=True, type=str, help="Query input of user")
+    parser.add_argument("--query", default="Tính 999 chia 765", type=str, help="Query input of user")
     args = parser.parse_args()
 
     start_time = time.time()
