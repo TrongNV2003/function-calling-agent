@@ -20,7 +20,6 @@ class Calculator(Tool):
     output_type = "string"
 
     def forward(self, a: float, b: float, op: str) -> str:
-        print(f"Thực hiện hàm calculator....")
         if op == "add":
             return a + b
         elif op == "subtract":

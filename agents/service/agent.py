@@ -1,3 +1,4 @@
+import json
 from openai import OpenAI
 from loguru import logger
 from typing import List, Optional, Union
@@ -23,9 +24,11 @@ class Agento:
 
         self.tools = [Calculator(), SearchEngine()]
 
-    def call_llm(self, prompt: str) -> dict:
-        logger.info("=== Prompt ===")
-        print(prompt)
+    def call_llm(self, prompt: str, show_prompt: bool = False) -> dict:
+        if show_prompt:
+            logger.info("=== Prompt ===")
+            print(prompt)
+
         response = self.llm.chat.completions.create(
             seed=llm_config.seed,
             temperature=llm_config.temperature,
@@ -38,17 +41,19 @@ class Agento:
             response_format={"type": "json_object"},
         )
         content = response.choices[0].message.content
-        logger.info("=== Agent response ===")
-        print(content)
         return parse_response(content)
 
     def call_tool(self, function_name: str, arguments: dict) -> str:
-        print(f"=== Calling function: {function_name} với arguments: {arguments} ===")
         for tool in self.tools:
             if tool.name == function_name:
                 try:
                     result = tool.forward(**arguments)
-                    output = f"<observe>\nKết quả từ hàm {function_name}: {result}\n</observe>"
+                    output_dict = {
+                        "function_name": function_name,
+                        "arguments": arguments,
+                        "valid_action": f"Kết quả từ hàm {function_name}: {result}"
+                    }
+                    output = f"<observe>\n{json.dumps(output_dict, ensure_ascii=False)}\n</observe>"
                     logger.info("=== Kết quả từ tool ===")
                     print(output)
                     return output

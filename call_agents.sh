@@ -1,5 +1,5 @@
 python agents/services.py \
-    --query "Tính 999 chia 765" \
+    --query "Tính 999 chia 765 cộng mười" \
 
 
 # linux

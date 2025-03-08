@@ -31,6 +31,12 @@ def parse_response(text: str) -> Dict:
         json_text = match.group(1)
         return json.loads(json_text)
 
-    logger.error(f"=== Lỗi: Response không chứa <action> hoặc <output>: {text} ===")
+    pattern_observe = r"<observe>\n(.*?)</observe>"
+    match = re.search(pattern_observe, text, re.DOTALL)
+    if match:
+        json_text = match.group(1)
+        return json.loads(json_text)
+
+    logger.error(f"=== Lỗi: Response: {text} ===")
     raise ValueError("Response không hợp lệ từ LLM")
 
