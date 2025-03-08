@@ -97,9 +97,14 @@ show_prompt = st.sidebar.selectbox("Visualize prompt:",
 
 def query_processing(query_text, container):
     steps = []
+    final_answer = ""
 
     def display_step(step):
+        nonlocal final_answer
         steps.append(step)
+
+        if step["type"] == "final_answer":
+            final_answer = step["content"]
 
         html_content = ""
         for s in steps:
@@ -109,8 +114,8 @@ def query_processing(query_text, container):
                 html_content += f'<div class="action-step">Bước {s["step"]}: Hành động - {s["content"]}</div>'
             elif s["type"] == "execution":
                 html_content += f'<div class="execution-step">Bước {s["step"]}: Thực thi - {s["content"]}</div>'
-            elif s["type"] == "final_answer":
-                html_content += f'<div class="final-answer">Kết quả cuối cùng: {s["content"]}</div>'
+            # elif s["type"] == "final_answer":
+            #     html_content += f'<div class="final-answer">Kết quả cuối cùng: {s["content"]}</div>'
             elif s["type"] == "error":
                 html_content += f'<div class="error-step">Lỗi: {s["content"]}</div>'
 
@@ -121,6 +126,7 @@ def query_processing(query_text, container):
     with st.spinner("Đang xử lý..."):
         ppl.run(query_text, step_callback=display_step, show_prompt=show_prompt)
 
+    return final_answer
 
 def main():
     if "chat_history" not in st.session_state:
@@ -143,7 +149,14 @@ def main():
         
         response_container = st.empty()
         
-        query_processing(query_text, response_container)
+        final_answer = query_processing(query_text, response_container)
+
+        if final_answer:
+            st.session_state.chat_history.append({"role": "assistant", "content": final_answer})
+            st.markdown(
+                f'<div class="chat-container"><div class="chat"><div class="bot-message">{final_answer}</div></div></div>',
+                unsafe_allow_html=True
+            )
 
 
 def health_check():
