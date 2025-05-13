@@ -5,6 +5,7 @@
 error_output
 nice_output
 config.yaml
+_debugger.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

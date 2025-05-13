@@ -71,4 +71,5 @@ FUNCTION_CALLING_PROMPT = (
 LIST_FUNCTION_PROMPT = (
     "- calculator(a: float, b: float, op: str) -> float: Hàm tính toán. op có thể là: 'add', 'subtract', 'multiply', 'divide'. Nếu trong phép toán có cả phép cộng, trừ, nhân, chia, hãy nhớ phép nhân, chia thực hiện trước, phép cộng, trừ thực hiện sau.\n"
     "- search_engine(query: str) -> str: Hàm tìm kiếm thông tin trên internet, cập nhật thông tin thời gian thực.\n"
+    "- retrieval_engine(query: str, top_k: int) -> str: Hàm truy xuất top k tài liệu trong cơ sở dữ liệu.\n"
 )

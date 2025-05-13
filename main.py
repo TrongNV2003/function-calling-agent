@@ -1,13 +1,13 @@
 import time
 import argparse
 from loguru import logger
-from agents.service.pipeline import AgentPipeline
+from function_calling_agents.service.pipeline import AgentPipeline
 
 def main():
     agento = AgentPipeline()
     
     parser = argparse.ArgumentParser(description="Function calling AI Agents.")
-    parser.add_argument("--query", default="Tính 999 chia 765", type=str, help="Query input of user")
+    parser.add_argument("--query", default="Tính 999 chia 765 cộng mười", type=str, help="Query input of user")
     args = parser.parse_args()
 
     start_time = time.time()

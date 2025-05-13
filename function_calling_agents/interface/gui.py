@@ -1,6 +1,7 @@
 import time
 import streamlit as st
-from agents.service.pipeline import AgentPipeline
+
+from function_calling_agents.service.pipeline import AgentPipeline
 
 ppl = AgentPipeline()
 
@@ -172,4 +173,4 @@ if __name__ == "__main__":
     
 
 # streamlit run streamlit_app.py
-# python -m streamlit run interface/gui.py
+# python -m streamlit run function_calling_agents/interface/gui.py

@@ -2,8 +2,8 @@ import json
 from loguru import logger
 from collections import deque
 
-from agents.service.agent import Agento
-from agents.service.prompts import FUNCTION_CALLING_PROMPT, LIST_FUNCTION_PROMPT
+from function_calling_agents.service.agent import Agento
+from function_calling_agents.service.prompts import FUNCTION_CALLING_PROMPT, LIST_FUNCTION_PROMPT
 
 class AgentPipeline:
     def __init__(self):

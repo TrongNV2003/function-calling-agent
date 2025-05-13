@@ -3,7 +3,7 @@ from loguru import logger
 from fastapi import FastAPI, Query
 from contextlib import asynccontextmanager
 
-from agents.service.pipeline import AgentPipeline
+from function_calling_agents.service.pipeline import AgentPipeline
 
 async def startup_hook(app: FastAPI):
     app.state.agento = AgentPipeline()

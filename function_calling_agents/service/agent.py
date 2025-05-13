@@ -3,11 +3,11 @@ from openai import OpenAI
 from loguru import logger
 from typing import List, Optional, Union
 
-from agents.service.utils import parse_response
-from agents.config.setting import llm_config, Role
-from agents.functions.calculator import Calculator
-from agents.functions.search_engine import SearchEngine
-from agents.service.prompts import SYSTEM_PROMPT
+from function_calling_agents.service.utils import parse_response
+from function_calling_agents.config.setting import llm_config, search_engine_config, Role
+from function_calling_agents.functions.calculator import Calculator
+from function_calling_agents.functions.search_engine import SearchEngine
+from function_calling_agents.service.prompts import SYSTEM_PROMPT
 
 
 class Agento:
@@ -22,7 +22,15 @@ class Agento:
         self.llm = llm
         self.prompt_template = prompt_template
 
-        self.tools = [Calculator(), SearchEngine()]
+        self.tools = [
+            Calculator(),
+            SearchEngine(
+                api_key=search_engine_config.api_key,
+                search_engine_id=search_engine_config.search_engine_id,
+                max_results=search_engine_config.max_results,
+                endpoint=search_engine_config.search_engine_url
+            )
+        ]
 
     def call_llm(self, prompt: str, show_prompt: bool = False) -> dict:
         if show_prompt:
