@@ -85,10 +85,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.markdown("# :rainbow[Agento v1]")
-st.sidebar.header("Agent")
-selected_bot = st.sidebar.selectbox("Select chatbot:", 
-                                    options=["Chatbot Basic", "Chatbot RAG"],
-                                    label_visibility="collapsed")
+# st.sidebar.header("Agent")
+# selected_bot = st.sidebar.selectbox("Select chatbot:", 
+#                                     options=["Chatbot Basic", "Chatbot RAG"],
+#                                     label_visibility="collapsed")
 
 st.sidebar.subheader("Show prompt in response")
 show_prompt = st.sidebar.selectbox("Visualize prompt:", 
@@ -173,4 +173,4 @@ if __name__ == "__main__":
     
 
 # streamlit run streamlit_app.py
-# python -m streamlit run function_calling_agents/interface/gui.py
+# python -m streamlit run function_calling_agents/ui/main.py
