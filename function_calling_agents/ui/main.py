@@ -172,5 +172,4 @@ if __name__ == "__main__":
     health_check()
     
 
-# streamlit run streamlit_app.py
 # python -m streamlit run function_calling_agents/ui/main.py
