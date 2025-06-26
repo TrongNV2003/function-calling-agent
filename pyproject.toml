@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "function-calling-agent"
+version = "0.1.0"
+description = "Create a basic agent from LLM"
+authors = ["Nguyen Van Trong <trongnguyen220603@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+agents = "1.4.0"
+fastapi = "0.115.13"
+langchain = "0.3.26"
+langchain-community = "0.3.26"
+loguru = "0.7.3"
+openai = "1.91.0"
+pydantic = "2.11.7"
+pydantic-settings = "2.10.1"
+pymupdf = "1.26.1"
+python-dotenv = "1.1.1"
+pyyaml = "6.0.2"
+requests = "2.32.4"
+smolagents = "1.15.0"
+streamlit = "1.45.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
